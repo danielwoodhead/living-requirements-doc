@@ -1,0 +1,17 @@
+{
+	"name": "Node.js & TypeScript",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+
+    "customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"eamodio.gitlens",
+				"ms-playwright.playwright"
+			]
+		}
+	},
+
+	"postCreateCommand": "sudo npx playwright install-deps && sudo apt-get update && npx playwright install && npm install"
+}
