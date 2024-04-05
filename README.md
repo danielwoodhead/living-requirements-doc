@@ -17,5 +17,5 @@ npx playwright test
 Run the tests and output JUnit XML:
 
 ```
-PLAYWRIGHT_JUNIT_OUTPUT_NAME=results.xml npx playwright test --reporter=junit
+PLAYWRIGHT_JUNIT_OUTPUT_NAME=test-results/results.xml npx playwright test --reporter=junit
 ```
