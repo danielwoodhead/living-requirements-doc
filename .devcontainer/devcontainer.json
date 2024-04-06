@@ -13,5 +13,5 @@
         }
     },
 
-    "postCreateCommand": "sudo npx playwright install-deps && sudo apt-get update && npx playwright install && npm install"
+    "postCreateCommand": "sudo npx playwright install-deps && sudo apt-get update && npx playwright install"
 }
