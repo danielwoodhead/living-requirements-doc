@@ -5,6 +5,7 @@
     "customizations": {
         "vscode": {
             "extensions": [
+                "anweber.vscode-httpyac",
                 "dbaeumer.vscode-eslint",
                 "esbenp.prettier-vscode",
                 "eamodio.gitlens",
