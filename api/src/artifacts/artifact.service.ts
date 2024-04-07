@@ -1,3 +1,8 @@
 export interface IArtifactService {
-  getLatestArtifactContent(name: string, repo: string): Promise<string>;
+  getLatestArtifactContent(
+    artifactName: string,
+    fileName: string,
+    repo: string,
+    owner: string,
+  ): Promise<string>;
 }

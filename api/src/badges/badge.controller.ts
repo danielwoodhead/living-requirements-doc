@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
+import { GetBadgeRequest } from './badge.models';
 import { BadgeService } from './badge.service';
 import { ShieldsIOBadge } from '../shieldsio/shieldsio.models';
 
@@ -7,7 +8,7 @@ export class BadgeController {
   constructor(private readonly badgeService: BadgeService) {}
 
   @Get()
-  getBadge(): Promise<ShieldsIOBadge> {
-    return this.badgeService.getBadge();
+  getBadge(@Query() request: GetBadgeRequest): Promise<ShieldsIOBadge> {
+    return this.badgeService.getBadge(request);
   }
 }

@@ -1,1 +1,5 @@
 GET http://localhost:3000/badge
+    ?owner=danielwoodhead
+    &repo=living-requirements-doc
+    &artifactName=test-results
+    &fileName=results.xml

@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IArtifactService } from '../artifacts/artifact.service';
 import { ShieldsIOBadge } from '../shieldsio/shieldsio.models';
+import { GetBadgeRequest } from './badge.models';
 
 @Injectable()
 export class BadgeService {
@@ -9,16 +10,18 @@ export class BadgeService {
     private readonly artifactService: IArtifactService,
   ) {}
 
-  async getBadge(): Promise<ShieldsIOBadge> {
-    const foo = await this.artifactService.getLatestArtifactContent(
-      'test-results',
-      'living-requirements-doc',
+  async getBadge(request: GetBadgeRequest): Promise<ShieldsIOBadge> {
+    const artifactContent = await this.artifactService.getLatestArtifactContent(
+      request.artifactName,
+      request.fileName,
+      request.repo,
+      request.owner,
     );
 
     return {
       schemaVersion: 1,
       label: 'hello',
-      message: foo,
+      message: artifactContent,
     };
   }
 }

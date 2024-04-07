@@ -1,23 +1,35 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import JSZip = require('jszip');
 import { Octokit } from 'octokit';
 import { IArtifactService } from './artifact.service';
 
-const octokit = new Octokit({
-  auth: 'xxx',
-});
-
 @Injectable()
 export class GitHubArtifactService implements IArtifactService {
-  async getLatestArtifactContent(name: string, repo: string): Promise<string> {
-    const artifacts = await octokit.rest.actions.listArtifactsForRepo({
-      owner: 'danielwoodhead',
+  private readonly logger = new Logger(GitHubArtifactService.name);
+  private readonly octokit: Octokit;
+
+  constructor(configService: ConfigService) {
+    this.octokit = new Octokit({
+      auth: configService.get<string>('GITHUB_TOKEN'),
+    });
+  }
+
+  async getLatestArtifactContent(
+    artifactName: string,
+    fileName: string,
+    repo: string,
+    owner: string,
+  ): Promise<string> {
+    this.logger.log('Getting latest artifact from GitHub');
+    const artifacts = await this.octokit.rest.actions.listArtifactsForRepo({
+      owner,
       repo,
-      name,
+      artifactName,
     });
     const latestArtifact = artifacts.data.artifacts[0];
-    const artifact = await octokit.rest.actions.downloadArtifact({
-      owner: 'danielwoodhead',
+    const artifact = await this.octokit.rest.actions.downloadArtifact({
+      owner,
       repo,
       artifact_id: latestArtifact.id,
       archive_format: 'zip',
@@ -27,9 +39,10 @@ export class GitHubArtifactService implements IArtifactService {
       throw new Error('artifact.data is not an ArrayBuffer');
     }
     const zipFile = await JSZip.loadAsync(artifact.data);
-    const testResultsFile = zipFile.file('results.xml');
-    const testResultsContent = await testResultsFile.async('string');
+    const file = zipFile.file(fileName);
+    const fileContent = await file.async('string');
+    this.logger.log(fileContent);
 
-    return String(testResultsContent);
+    return String(fileContent);
   }
 }
