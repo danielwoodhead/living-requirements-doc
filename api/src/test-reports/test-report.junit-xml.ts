@@ -10,9 +10,8 @@ export class JUnitXmlTestReport implements ITestReport {
   }
 
   findTestCase(requirementId: string): TestCase {
-    // replacing " with &quot; to protect against injection
     const testCase = xpath.select(
-      `//property[@name="requirement"][@value="${requirementId.replace('"', '&quot;')}"]/ancestor::testcase`,
+      `//property[@name="requirement"][@value="${requirementId}"]/ancestor::testcase`,
       this.document,
       true,
     );

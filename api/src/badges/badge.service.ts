@@ -24,7 +24,7 @@ export class BadgeService {
       throw new Error('Failed to parse artifact file as test report');
     }
 
-    const testCase: TestCase = testReport.findTestCase('1.1');
+    const testCase: TestCase = testReport.findTestCase(request.requirementId);
 
     let message: string;
     if (!testCase) {
