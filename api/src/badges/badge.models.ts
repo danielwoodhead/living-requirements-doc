@@ -4,3 +4,9 @@ export class GetBadgeRequest {
   artifactName: string;
   fileName: string;
 }
+
+export class ShieldsIOBadge {
+  schemaVersion: 1;
+  label: string;
+  message: string;
+}

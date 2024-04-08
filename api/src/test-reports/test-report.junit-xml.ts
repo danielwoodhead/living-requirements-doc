@@ -1,4 +1,4 @@
-import { ITestReport, TestCase } from './test-report.service';
+import { ITestReport, TestCase } from './test-report.models';
 import xpath = require('xpath');
 import dom = require('@xmldom/xmldom');
 

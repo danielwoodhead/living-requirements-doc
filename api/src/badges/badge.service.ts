@@ -1,12 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IArtifactService } from '../artifacts/artifact.service';
-import { ShieldsIOBadge } from '../shieldsio/shieldsio.models';
-import {
-  ITestReport,
-  TestCase,
-  TestReportService,
-} from '../test-reports/test-report.service';
-import { GetBadgeRequest } from './badge.models';
+import { ITestReport, TestCase } from '../test-reports/test-report.models';
+import { TestReportService } from '../test-reports/test-report.service';
+import { GetBadgeRequest, ShieldsIOBadge } from './badge.models';
 
 @Injectable()
 export class BadgeService {

@@ -1,12 +1,5 @@
 import { JUnitXmlTestReport } from './test-report.junit-xml';
-
-export class TestCase {
-  passed: boolean;
-}
-
-export interface ITestReport {
-  findTestCase(requirementId: string): TestCase;
-}
+import { ITestReport } from './test-report.models';
 
 export class TestReportService {
   public static parse(report: string): ITestReport | null {
