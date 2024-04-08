@@ -18,6 +18,9 @@ export class BadgeService {
       request.repo,
       request.owner,
     );
+    if (!artifactContent) {
+      throw new Error('Failed to retrieve artifact file');
+    }
 
     const testReport: ITestReport = TestReportService.parse(artifactContent);
     if (!testReport) {

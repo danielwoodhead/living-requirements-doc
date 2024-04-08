@@ -20,13 +20,16 @@ export class GitHubArtifactService implements IArtifactService {
     fileName: string,
     repo: string,
     owner: string,
-  ): Promise<string> {
+  ): Promise<string | null> {
     this.logger.log('Getting latest artifact from GitHub');
     const artifacts = await this.octokit.rest.actions.listArtifactsForRepo({
       owner,
       repo,
       artifactName,
     });
+    if (artifacts?.data?.artifacts?.length ?? 0 === 0) {
+      return null;
+    }
     const latestArtifact = artifacts.data.artifacts[0];
     const artifact = await this.octokit.rest.actions.downloadArtifact({
       owner,
