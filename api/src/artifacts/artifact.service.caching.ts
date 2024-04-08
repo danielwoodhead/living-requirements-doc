@@ -14,17 +14,17 @@ export class CachingArtifactService implements IArtifactService {
     private readonly cacheManager: Cache,
   ) {}
 
-  getLatestArtifactContent(
+  getLatestArtifactFile(
     artifactName: string,
     fileName: string,
     repo: string,
     owner: string,
   ): Promise<string> {
-    const cacheKey = `ARTIFACT#${owner}#${repo}#${artifactName}`;
+    const cacheKey = `ARTIFACT#${owner}#${repo}#${artifactName}#${fileName}`;
     return this.cacheManager.wrap(
       cacheKey,
       () =>
-        this.artifactService.getLatestArtifactContent(
+        this.artifactService.getLatestArtifactFile(
           artifactName,
           fileName,
           repo,

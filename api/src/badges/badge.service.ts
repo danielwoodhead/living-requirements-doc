@@ -1,6 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IArtifactService } from '../artifacts/artifact.service';
 import { ShieldsIOBadge } from '../shieldsio/shieldsio.models';
+import {
+  ITestReport,
+  TestCase,
+  TestReportService,
+} from '../test-reports/test-report.service';
 import { GetBadgeRequest } from './badge.models';
 
 @Injectable()
@@ -11,17 +16,31 @@ export class BadgeService {
   ) {}
 
   async getBadge(request: GetBadgeRequest): Promise<ShieldsIOBadge> {
-    const artifactContent = await this.artifactService.getLatestArtifactContent(
+    const artifactContent = await this.artifactService.getLatestArtifactFile(
       request.artifactName,
       request.fileName,
       request.repo,
       request.owner,
     );
 
+    const testReport: ITestReport = TestReportService.parse(artifactContent);
+    if (!testReport) {
+      throw new Error('Failed to parse artifact file as test report');
+    }
+
+    const testCase: TestCase = testReport.findTestCase('1.1');
+
+    let message: string;
+    if (!testCase) {
+      message = 'Not found';
+    } else {
+      message = testCase.passed ? 'Pass' : 'Fail';
+    }
+
     return {
       schemaVersion: 1,
-      label: 'hello',
-      message: artifactContent,
+      label: 'status',
+      message,
     };
   }
 }

@@ -1,5 +1,5 @@
 export interface IArtifactService {
-  getLatestArtifactContent(
+  getLatestArtifactFile(
     artifactName: string,
     fileName: string,
     repo: string,

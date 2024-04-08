@@ -15,7 +15,7 @@ export class GitHubArtifactService implements IArtifactService {
     });
   }
 
-  async getLatestArtifactContent(
+  async getLatestArtifactFile(
     artifactName: string,
     fileName: string,
     repo: string,
@@ -41,8 +41,7 @@ export class GitHubArtifactService implements IArtifactService {
     const zipFile = await JSZip.loadAsync(artifact.data);
     const file = zipFile.file(fileName);
     const fileContent = await file.async('string');
-    this.logger.log(fileContent);
 
-    return String(fileContent);
+    return fileContent;
   }
 }
