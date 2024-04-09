@@ -1,4 +1,4 @@
-GET http://localhost:3000/badge
+GET {{url}}/badge
     ?owner=danielwoodhead
     &repo=living-requirements-doc
     &artifactName=test-results

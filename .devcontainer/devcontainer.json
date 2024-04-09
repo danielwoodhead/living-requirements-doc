@@ -2,6 +2,10 @@
     "name": "Node.js & TypeScript",
     "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
 
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    },
+
     "customizations": {
         "vscode": {
             "extensions": [
@@ -14,5 +18,5 @@
         }
     },
 
-    "postCreateCommand": "sudo npx playwright install-deps && sudo apt-get update && npx playwright install"
+    "postCreateCommand": "cd playwright && sudo npx playwright install-deps && sudo apt-get update && npm install && npx playwright install"
 }
