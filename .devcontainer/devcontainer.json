@@ -13,7 +13,10 @@
                 "dbaeumer.vscode-eslint",
                 "esbenp.prettier-vscode",
                 "eamodio.gitlens",
-                "ms-playwright.playwright"
+                "ms-azuretools.vscode-azurecontainerapps",
+                "ms-azuretools.vscode-docker",
+                "ms-playwright.playwright",
+                "ms-vscode.azure-account"
             ]
         }
     },
