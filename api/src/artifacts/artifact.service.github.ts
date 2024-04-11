@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import JSZip = require('jszip');
 import { Octokit } from 'octokit';
@@ -6,7 +6,6 @@ import { IArtifactService } from './artifact.service';
 
 @Injectable()
 export class GitHubArtifactService implements IArtifactService {
-  private readonly logger = new Logger(GitHubArtifactService.name);
   private readonly octokit: Octokit;
 
   constructor(configService: ConfigService) {
@@ -21,7 +20,6 @@ export class GitHubArtifactService implements IArtifactService {
     repo: string,
     owner: string,
   ): Promise<string | null> {
-    this.logger.log('Getting latest artifact from GitHub');
     const artifacts = await this.octokit.rest.actions.listArtifactsForRepo({
       owner,
       repo,

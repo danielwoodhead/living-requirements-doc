@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Cache } from 'cache-manager';
 import { CachingArtifactService } from '../artifacts/artifact.service.caching';
 import { GitHubArtifactService } from '../artifacts/artifact.service.github';
@@ -20,10 +21,12 @@ import { BadgeService } from './badge.service';
       useFactory: (
         original: FakeJUnitXmlArtifactService,
         cacheManager: Cache,
-      ) => new CachingArtifactService(original, cacheManager),
+        configService: ConfigService,
+      ) => new CachingArtifactService(original, cacheManager, configService),
       inject: [
         FakeJUnitXmlArtifactService,
         { token: CACHE_MANAGER, optional: false },
+        ConfigService,
       ],
     },
   ],
