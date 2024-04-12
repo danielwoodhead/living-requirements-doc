@@ -14,17 +14,17 @@ import { BadgeService } from './badge.service';
   controllers: [BadgeController],
   providers: [
     BadgeService,
-    //GitHubArtifactService,
-    FakeJUnitXmlArtifactService,
+    GitHubArtifactService,
+    //FakeJUnitXmlArtifactService,
     {
       provide: 'IArtifactService',
       useFactory: (
-        original: FakeJUnitXmlArtifactService,
+        original: GitHubArtifactService,
         cacheManager: Cache,
         configService: ConfigService,
       ) => new CachingArtifactService(original, cacheManager, configService),
       inject: [
-        FakeJUnitXmlArtifactService,
+        GitHubArtifactService,
         { token: CACHE_MANAGER, optional: false },
         ConfigService,
       ],

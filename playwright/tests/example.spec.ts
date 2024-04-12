@@ -15,23 +15,21 @@ test(
   }
 );
 
-test("get started link", async ({ page }) => {
-  await page.goto("https://playwright.dev/");
-
-  await page.getByRole("link", { name: "Get started" }).click();
-
-  await expect(
-    page.getByRole("heading", { name: "Installation" })
-  ).toBeVisible();
-});
-
 test.fail(
-  "always fail",
+  "get started link",
   {
     annotation: {
       type: "requirement",
       description: "1.2",
     },
   },
-  async () => {}
+  async ({ page }) => {
+    await page.goto("https://playwright.dev/");
+
+    await page.getByRole("link", { name: "Get started" }).click();
+
+    await expect(
+      page.getByRole("heading", { name: "Installation" })
+    ).toBeVisible();
+  }
 );

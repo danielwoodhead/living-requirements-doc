@@ -16,8 +16,8 @@ export class JUnitXmlTestReport implements ITestReport {
       true,
     );
 
-    if (!this.isNode(testCase)) {
-      throw new Error('testCase is not a Node');
+    if (!testCase || !this.isNode(testCase)) {
+      return null;
     }
 
     return {

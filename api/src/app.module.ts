@@ -10,7 +10,15 @@ import { APP_GUARD } from '@nestjs/core';
 @Module({
   imports: [
     BadgeModule,
-    CacheModule.register({ isGlobal: true }),
+    CacheModule.registerAsync({
+      isGlobal: true,
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        // configService always returns strings
+        max: Number(configService.get<number>('CACHE_MAX_ITEMS', 30)),
+      }),
+      inject: [ConfigService],
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: ['.env.local', '.env'],
@@ -18,13 +26,13 @@ import { APP_GUARD } from '@nestjs/core';
     }),
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
-      inject: [ConfigService],
       useFactory: (config: ConfigService) => [
         {
           ttl: config.get<number>('THROTTLE_TTL', 60000),
           limit: config.get<number>('THROTTLE_LIMIT', 100),
         },
       ],
+      inject: [ConfigService],
     }),
   ],
   controllers: [AppController],

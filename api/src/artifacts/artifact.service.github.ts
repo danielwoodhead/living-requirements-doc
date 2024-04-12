@@ -25,7 +25,7 @@ export class GitHubArtifactService implements IArtifactService {
       repo,
       artifactName,
     });
-    if (artifacts?.data?.artifacts?.length ?? 0 === 0) {
+    if ((artifacts?.data?.artifacts?.length ?? 0) === 0) {
       return null;
     }
     const latestArtifact = artifacts.data.artifacts[0];
