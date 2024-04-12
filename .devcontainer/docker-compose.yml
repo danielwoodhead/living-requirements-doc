@@ -1,0 +1,16 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker-host.sock 
+      - ..:/workspaces:cached
+
+    entrypoint: /usr/local/share/docker-init.sh
+    command: sleep infinity 
+  shields:
+    image: "shieldsio/shields:next"
+    ports:
+      - "3001:80"
