@@ -23,7 +23,15 @@ test(
       description: "1.2",
     },
   },
-  async () => {
-    throw new Error("fail");
+  async ({ page }) => {
+    await page.goto("https://playwright.dev/");
+
+    await page.getByRole("link", { name: "Get started" }).click();
+
+    await expect(
+      page.getByRole("heading", {
+        name: "This is the wrong heading to make the test fail",
+      })
+    ).toBeVisible();
   }
 );
