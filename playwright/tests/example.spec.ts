@@ -29,9 +29,7 @@ test(
     await page.getByRole("link", { name: "Get started" }).click();
 
     await expect(
-      page.getByRole("heading", {
-        name: "This is the wrong heading to make the test fail",
-      })
+      page.getByRole("heading", { name: "Installation" })
     ).toBeVisible();
   }
 );
