@@ -2,9 +2,9 @@
 
 This project demonstrates a requirements document that automatically reflects the current status of each requirement using the latest automated test results.
 
-## Example requirements
+> The demo scales down to zero to save $$$ which can cause the badges below take a few seconds to load or even time out. If you see hyperlinks instead of badges in the next section try refreshing.
 
-> The demo scales down to zero to save $$$ which can cause this to take a few seconds to load or even time out. If you see hyperlinks below instead of badges try refreshing.
+## Example requirements
 
 ### 1.1 - The page has a title of 'Playwright'
 
@@ -71,7 +71,7 @@ GET /badge
 
 It does the following:
 
-1. Retrieves the latest test result artifact from GitHub
+1. Retrieves the latest test result artifact from GitHub and caches it
 2. Determines the current status of the relevant test
 3. Uses [shields.io](https://shields.io/) to create the badge as an SVG to display in the requirements doc
 
