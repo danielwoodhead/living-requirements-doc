@@ -1,0 +1,6 @@
+GET {{url}}/badge
+    ?owner=danielwoodhead
+    &repo=living-requirements-doc
+    &artifactName=test-results
+    &fileName=results.xml
+    &requirementId=1.1

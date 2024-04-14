@@ -1,0 +1,30 @@
+{
+    "name": "Node.js & TypeScript",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspaces",
+
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    },
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "anweber.vscode-httpyac",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "eamodio.gitlens",
+                "ms-azuretools.vscode-azurecontainerapps",
+                "ms-azuretools.vscode-docker",
+                "ms-playwright.playwright",
+                "ms-vscode.azure-account"
+            ],
+            "settings": {
+                "httpyac.responseViewContent": "exchange"
+            }
+        }
+    },
+
+    "postCreateCommand": "cd playwright && sudo npx playwright install-deps && sudo apt-get update && npm install && npx playwright install"
+}

@@ -1,0 +1,5 @@
+{
+    "containerApps.deployWorkspaceProject.containerAppResourceGroupName": "living-requirements",
+    "containerApps.deployWorkspaceProject.containerAppName": "living-requirements",
+    "containerApps.deployWorkspaceProject.containerRegistryName": "livingrequirements608e7d"
+}
