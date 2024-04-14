@@ -12,5 +12,7 @@ services:
     command: sleep infinity 
   shields:
     image: "shieldsio/shields:next"
+    environment:
+      - PORT=3001
     ports:
-      - "3001:80"
+      - "3001:3001"

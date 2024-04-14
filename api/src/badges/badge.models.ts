@@ -18,9 +18,3 @@ export class GetBadgeRequest {
   @Matches(VALID_REGEX)
   requirementId: string;
 }
-
-export class ShieldsIOBadge {
-  schemaVersion: 1;
-  label: string;
-  message: string;
-}
