@@ -1,4 +1,4 @@
-# living-requirements-doc
+# Living requirements doc
 
 This project demonstrates a requirements document that automatically reflects the current status of each requirement using the latest automated test results.
 
