@@ -36,6 +36,7 @@ export class BadgeService {
     let color: string;
     if (!testCase) {
       message = 'Not found';
+      color = 'lightgrey';
     } else if (testCase.passed) {
       message = 'Pass';
       color = 'green';
