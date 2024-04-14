@@ -30,7 +30,7 @@ test(
 
     await expect(
       page.getByRole("heading", {
-        name: "This is the wrong heading to make the test fail",
+        name: "Installation",
       })
     ).toBeVisible();
   }
