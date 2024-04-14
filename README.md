@@ -4,7 +4,7 @@ This project demonstrates a requirements document that automatically reflects th
 
 ## Example requirements
 
-> This may take a few seconds to load because the demo scales down to zero to save $$$
+> The demo scales down to zero to save $$$ which can cause this to take a few seconds to load or even time out. If you see hyperlinks below instead of badges try refreshing.
 
 ### 1.1 - The page has a title of 'Playwright'
 
